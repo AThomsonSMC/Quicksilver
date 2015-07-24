@@ -1,0 +1,51 @@
+table.value_field td{
+    width: 120px;
+    padding: 2px 6px;
+    color: black;
+    font-family: sans-serif;
+}
+
+table.value_field tr.value td{
+    text-align: left;
+    border-bottom: 2px solid black;
+}
+
+table.value_field tr.field td{
+    text-align: right;
+    vertical-align: top;
+}
+
+tr.appearance td{
+    text-align: center;
+    width: 300px;
+    font-family: sans-serif;
+    font-size: 24px;
+}
+
+td.abil{
+    text-align: left;
+    width: 75px;
+    font-size: 30px;
+    border-bottom:1px solid black;
+}
+
+td.score{
+    text-align: right;
+    width: 75px;
+    font-size: 16px;
+    border-bottom:1px solid black;
+
+    font-family:"Courier New", courier, monospace;
+}
+
+td.grid_abil{
+    font-family:"Courier New", courier, monospace;
+}
+
+table.skill_grid td.total_bonus{
+    font-size: 16px;
+}
+
+table.skill_grid td{
+    font-size:14px;
+}

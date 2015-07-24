@@ -1,0 +1,95 @@
+{% extends "Quicksilver/base.html" %}
+{% load static %}
+{% block title %}Class Detail{% endblock %}
+{% load class_filters %}
+
+{% block stylesheet %}<link rel="stylesheet" type="text/css" href="{% static 'css/classes/detail.css' %}">{% endblock %}
+
+{% block content %}
+<script src="{% static 'js/classes/detail.js' %}"></script>
+
+<div style="display:none"><span id="class_id">{{ class.id }}</span></div>
+
+<div id="all_content" style="margin-bottom:20px">
+<div id="header" style="width:1000px">
+    <div id="name" style="width:1000px; text-align:center; display:inline-block; padding-top:16px">
+        <span style="font-size:28px"><b><u>{{ class.name }}</u></b></span><br>
+    </div>
+</div>
+<div id="top-buffer" style="height:20px"></div>
+<div id="top-block" style="padding-left:15px">
+<div id="left_side" style="height:150px; width:500px; display:inline-block">
+    <div id="synopsis" style="width:100%; height:30px; border:2px black">The synopsis will go here</div>
+    <div id="value_field-block" style="width:100%">
+    <table class="value_field" id="statics" style="border-spacing: 25px 2px">
+        <tr class="value" style="font-size:18px">
+            <td>{{ class.skill_ranks }} + [Int]</td>
+            <td>d{{ class.hit_die }}</td>
+            <td>{{ class.alignment|disp_static:"align_choices" }}</td>
+            <td>{{ class.classstats.spell_abil|disp_static:"abil" }}</td>
+        </tr>
+        <tr class="field" style="font-size:12px">
+            <td>Skill Ranks</td>
+            <td>Hit Die</td>
+            <td>Alignment</td>
+            <td>Casting Skill</td>
+        </tr>
+    </table>
+    <div id="table_buffer" style="height:15px"></div>
+    <table class="value_field" id="statics" style="border-spacing: 25px 2px">
+        <tr class="value" style="font-size:18px">
+            <td>{{ class.weapon_prof|class_static:"weapon" }}</td>
+            <td>{{ class.armor_prof|class_static:"armor" }}{{ class.shield_prof|class_static:"shield" }}</td>
+        </tr>
+        <tr class="field" style="font-size:12px">
+            <td>Weapon Proficiency</td>
+            <td>Armor Proficiency</td>
+        </tr>
+    </table>
+    </div>
+    <div id="top_statics-buffer" style="height:25px"></div>
+    <div id="skills" class="collapse" style="width:95%">
+        <h3 style="font-size:16px; padding: 4px 4px 4px 30px">Class Skills</h3>
+            <div id="class_skills">
+                Here is the list of class skills.
+            </div>
+    </div>
+    <div id="top_collapse-buffer" style="height:8px"></div>
+    <div id="prereqs" class="collapse" style="width:95%">
+        <h3 style="font-size:18px; padding: 4px 4px 4px 30px">Class Prerequisites</h3>
+            <div>
+                Here is the list of class pre-reqs.
+            </div>
+    </div>
+</div>
+
+<div id="right_side" style="width:400px; display:inline-block; vertical-align: top">
+    <div id="long_desc" style="width:100%">
+        <h3 style="margin-top:0">Description</h3>
+        <p>Long description goes here.</p>
+    </div>
+    <div id="role" style="width:100%">
+        <h3>Role</h3>
+        <p>Role description here.</p>
+    </div>
+</div>
+</div>
+<div id="horz-buffer" style="height:30px"></div>
+<div id="bottom-grids" style="padding-left:15px">
+    <div id="level_table" class="collapse" >
+        <h3>Leveling</h3>
+            <div>
+                Table of leveling.
+            </div>
+    </div>
+    <div id="bottom-buffer" style="height:20px"></div>
+    <div id="class_features" class="collapse">
+        <h3>Class Features</h3>
+            <div>
+                Class Features.
+            </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

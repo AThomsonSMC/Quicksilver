@@ -1,0 +1,17 @@
+{% extends "Quicksilver/base.html" %}
+{% load static %}
+{% load char_filters %}
+{% block title %}Character Detail{% endblock %}
+
+{% block stylesheet %}<link rel="stylesheet" type="text/css" href="{% static 'css/character/index.css' %}">{% endblock %}
+
+{% block content %}
+<script src="{% static 'js/character/index.js' %}"></script>
+
+<div id="char_grid-div" style="margin: 20px">
+<table id="char_grid">
+    <tr><td></td></tr>
+</table>
+</div>
+
+{% endblock %}

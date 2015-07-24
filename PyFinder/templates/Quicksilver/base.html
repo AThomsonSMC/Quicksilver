@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}<head>
+    <title>{% block title %}My amazing site{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/jqGrid/css/ui.jqgrid.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+    {% block stylesheet %}{% endblock %}
+</head>
+
+<body bgcolor="#f0f8fa">
+
+<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/jqGrid/js/jquery.jqGrid.min.js' %}"></script>
+<script src="{% static 'js/base.js' %}"></script>
+
+{% block header %}
+<div id="header" style="height:100px; width:100%; background-color:#638ab8; position:relative">
+    <div id="logo" style="float:left; vertical-align:top; disply:inline-block">
+        <img src="{%  static "media/Quicksilver164per.png" %}">
+    </div>
+    <div id="account_btns" style="text-align:right; display:inline-block; position:absolute; bottom:0; right:0">Login | Create Account</div>
+</div>
+{% endblock %}
+<div id="main_page" style="display:table">
+<div id="nav" style="align:left; height:100%; width: 100px;
+                     background-color: lightsteelblue; display:table-cell;">
+    {% block sidebar %}
+    <div id="nav_tabs" style="text-align:center">
+        <button id="new_char_button" class="nav_button">Make A Character</button>
+        <button id="view_chars_button" class="nav_button">Characters</button>
+        <button id="view_class_button" class="nav_button">Classes</button>
+        <button id="view_races_button" class="nav_button">Races</button>
+        <button id="view_feats_button" class="nav_button">Feats</button>
+        <button id="view_spells_button" class="nav_button">Spells</button>
+    </div>
+    {% endblock %}
+</div>
+<div id="content" style="display:table-cell; vertical-align:top;">
+    {% block content %}{% endblock %}
+</div>
+</div>
+<div id="footer" style="height:20px; width:100%; background-color:steelblue">
+    {% block footer %}
+    <div id="copyright" style="float:right; vertical-align:bottom">(c) Adam Thomson, 2015</div>
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+table.value_field td{
+    width: 240px;
+    padding: 2px 6px;
+    color: black;
+    font-family: sans-serif;
+}
+
+table.value_field tr.value td{
+    text-align: left;
+    border-bottom: 2px solid black;
+}
+
+table.value_field tr.field td{
+    text-align: right;
+    vertical-align: top;
+}
+
+td.grid_abil{
+    font-family:"Courier New", courier, monospace;
+}
+
+table.skill_grid td.total_bonus{
+    font-size: 16px;
+}
+
+table.skill_grid td{
+    font-size:14px;
+}

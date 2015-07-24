@@ -1,0 +1,155 @@
+{% extends "Quicksilver/base.html" %}
+{% load static %}
+{% load char_filters %}
+{% block title %}Character Detail{% endblock %}
+
+{% block stylesheet %}<link rel="stylesheet" type="text/css" href="{% static 'css/character/detail.css' %}">{% endblock %}
+
+{% block content %}
+<script src="{% static 'js/character/detail.js' %}"></script>
+
+<div style="display:none"><span id="char_id">{{ char.id }}</span></div>
+
+<div id="all_content" style="display:table; margin-bottom:20px">
+<div id="main_stats" style="width:600px; display:table-cell; padding-left:15px">
+<div id="header" style="height:80px; width:600px">
+    <div id="name" style="width:350px; text-align:center; display:inline-block; padding-top:26px">
+        <span style="font-size:32px">{{ char.name }}</span><br>
+        <span style="font-size:16px">by {{ char.player.username }}</span>
+    </div>
+    <div id="levels" style="display:inline-block; text-align:left">
+        <span style="font-size:18px">
+            {% if char.class1 %}
+                Level {{ char.class1_lvl }} <a href="/quicksilver/class/{{ char.class1.id }}">{{ char.class1.name }}</a>
+            {% endif %}
+            {% if char.class2 %}
+                <br>Level {{ char.class2_lvl }} <a href="/quicksilver/class/{{ char.class2.id }}">{{ char.class2.name }}</a>
+            {% endif %}
+            {% if char.class3 %}
+                <br>Level {{ char.class3_lvl }} <a href="/quicksilver/class/{{ char.class3.id }}">{{ char.class3.name }}</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+<div id="cosmetics" style="height:200px; width:600px; padding-top:10px">
+    <table class="value_field" id="appearance" style="padding:20px; width:100%; border-spacing: 50px 2px">
+        <tr class="value" style="font-size:20px">
+            <td>{{ char.alignment|disp_static:'align' }}</td>
+            <td>{{ char.race.name }}</td>
+        </tr>
+        <tr class="field" style="font-size:14px">
+            <td>Alignment</td>
+            <td>Race</td>
+        </tr>
+    </table>
+    <table class="value_field" id="cosmetics" style="border-spacing: 25px 2px;">
+        <tr class="value" style="font-size:15px">
+            <td>{{ char.gender|disp_static:'gender' }}</td>
+            <td>{{ char.disp_height }}</td>
+            <td>{{ char.weight }} lbs.</td>
+            <td>{{ char.deity }}</td>
+            <td>{{ char.home }}</td>
+        </tr>
+        <tr class="field" style="font-size:10px">
+            <td>Gender</td>
+            <td>Height</td>
+            <td>Weight</td>
+            <td>Deity</td>
+            <td>Homeland</td>
+        </tr>
+        <tr id="buffer_row" style="height:16px"><td></td></tr>
+        <tr class="value" style="font-size:15px">
+            <td>{{ char.eyes }}&nbsp;</td>
+            <td>{{ char.hair_color }}&nbsp;</td>
+            <td>{{ char.hair_length }}&nbsp;</td>
+            <td>{{ char.hair_style }}&nbsp;</td>
+            <td>{{ char.skin_tone }}&nbsp;</td>
+        </tr>
+        <tr class="field" style="font-size:10px">
+            <td>Eye Color</td>
+            <td>Hair Color</td>
+            <td>Hair Length</td>
+            <td>Hair Style</td>
+            <td>Skin Tone</td>
+        </tr>
+    </table>
+</div>
+<div style="height:16px"></div>
+<div id="ability_scores" style="padding:10px; margin-left:25px; display:inline-block; border: double 4px">
+    <table style="border-spacing:8px 0">
+        <tr><td class="abil">STR</td><td class="score">
+            {{ char.ability_scores.str_score }} [{{ char.ability_scores.str_score|abil_mod }}]</td></tr>
+        <tr><td class="abil">DEX</td><td class="score">
+            {{ char.ability_scores.dex_score }} [{{ char.ability_scores.dex_score|abil_mod }}]</td></tr>
+        <tr><td class="abil">CON</td><td class="score">
+            {{ char.ability_scores.con_score }} [{{ char.ability_scores.con_score|abil_mod }}]</td></tr>
+        <tr><td class="abil">INT</td><td class="score">
+            {{ char.ability_scores.int_score }} [{{ char.ability_scores.int_score|abil_mod }}]</td></tr>
+        <tr><td class="abil">WIS</td><td class="score">
+            {{ char.ability_scores.wis_score }} [{{ char.ability_scores.wis_score|abil_mod }}]</td></tr>
+        <tr><td class="abil">CHA</td><td class="score">
+            {{ char.ability_scores.cha_score }} [{{ char.ability_scores.cha_score|abil_mod }}]</td></tr>
+    </table>
+</div>
+<div id="hp_ac_speed" style="display:inline-block; vertical-align: top;">
+    <table class="value_field" style="width:360px; border-spacing:40px 5px">
+        <tr class="value">
+            <td style="font-size:24px">{{ char.hit_points }}</td>
+            <td style="font-size:24px">{{ char.armor_class }}</td>
+        </tr>
+        <tr class="field">
+            <td style="font-size:16px">Max HP</td>
+            <td style="font-size:16px">Armor Class</td>
+        </tr>
+        <tr style="height:20px"><td></td></tr>
+        <tr class="value">
+            <td style="font-size:24px">{{ char.speed.base }} ft.</td>
+            <td style="font-size:24px">{{ char.flat_footed }}</td>
+        </tr>
+        <tr class="field">
+            <td style="font-size:16px">Speed</td>
+            <td style="font-size:16px">Flat Footed</td>
+        </tr>
+        <tr style="height:20px"><td></td></tr>
+        <tr class="value">
+            <td style="font-size:24px">{{ char.initiative }}</td>
+            <td style="font-size:24px">{{ char.touch_ac }}</td>
+        </tr>
+        <tr class="field">
+            <td style="font-size:16px">Initiative</td>
+            <td style="font-size:16px">Touch AC</td>
+        </tr>
+    </table>
+</div>
+<div style="height:10px"></div>
+<div id="saves" style="width:600px">
+    <table class="value_field" style="width:100%; border-spacing:25px 0; padding:10px">
+        <tr class="value" style="font-size:20px">
+            <td>{{ char.saves|save_mod:'fort' }}</td>
+            <td>{{ char.saves|save_mod:'ref' }}</td>
+            <td>{{ char.saves|save_mod:'will' }}</td>
+            <td>{{ char.spell_res }}</td>
+            <td>{{ char.bab }}</td>
+            <td>{{ char.cmb }}</td>
+            <td>{{ char.cmd }}</td>
+        </tr>
+        <tr class="field" style="font-size:12px">
+            <td>Fort</td>
+            <td>Reflex</td>
+            <td>Will</td>
+            <td>SR</td>
+            <td>BAB</td>
+            <td>CMB</td>
+            <td>CMD</td>
+        </tr>
+    </table>
+</div>
+</div>
+<div id="skills" style="display:table-cell; width:auto; height:auto; vertical-align:top; padding-top:15px">
+    <div id="skills-div">
+        <table id="skill_grid" class="skill_grid"><tr><td></td></tr></table>
+    </div>
+</div>
+</div>
+
+{% endblock %}
